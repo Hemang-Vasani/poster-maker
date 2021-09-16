@@ -1,0 +1,100 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="share">
+        <h4 id="blog_title">
+            Blog Title
+        </h4>
+
+        <div>
+            Blog Description
+        </div>
+    </div>
+</body>
+<input type="text" id="input" value="" />
+<a href="" id="whatsappShare" data-action="share/whatsapp/share" target="_blank"> Share to WhatsApp </a>
+<br />
+<p id="browser"></p>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script>
+
+    $("#whatsappShare").attr("href", "whatsapp://send?text=" + window.location.href);
+    $("#input").attr('value', window.location.href);
+
+    function checkBrowser() {
+
+        // Get the user-agent string
+        let userAgentString =
+            navigator.userAgent;
+
+        // Detect Chrome
+        let chromeAgent =
+            userAgentString.indexOf("Chrome") > -1;
+
+        // Detect Internet Explorer
+        let IExplorerAgent =
+            userAgentString.indexOf("MSIE") > -1 ||
+            userAgentString.indexOf("rv:") > -1;
+
+        // Detect Firefox
+        let firefoxAgent =
+            userAgentString.indexOf("Firefox") > -1;
+
+        // Detect Safari
+        let safariAgent =
+            userAgentString.indexOf("Safari") > -1;
+
+        // Discard Safari since it also matches Chrome
+        if ((chromeAgent) && (safariAgent))
+            safariAgent = false;
+
+        // Detect Opera
+        let operaAgent =
+            userAgentString.indexOf("OP") > -1;
+
+        // Discard Chrome since it also matches Opera     
+        if ((chromeAgent) && (operaAgent))
+            chromeAgent = false;
+
+        if(chromeAgent){
+            return "chrome"
+        } else if(safariAgent){
+            return "safari"
+        } else{
+            return "other"
+        }
+    }
+
+    window.onload = () => {
+        // window.location.href = "https://www.google.com"
+
+        var output = checkBrowser();
+        document.getElementById("browser").innerHTML = output;
+    }
+
+
+    if (navigator.share) {
+        const article = document.getElementById("share");
+        article.insertAdjacentHTML(
+            "beforeend",
+            `<button onclick="window.doSharing(this)">Share</button>`
+        );
+    }
+    console.log("el:" + window.location.href)
+    window.doSharing = (el) => {
+        console.log("el: " + el.parentNode);
+        console.log("el parentnode: : " + el.parentNode.querySelector("div").innerHTML);
+        console.log("el : : : " + el.parentNode.querySelector("h4").innerHTML);
+        navigator.share({
+            title: el.parentNode.querySelector("h4").innerHTML,
+            text: el.parentNode.querySelector("div").innerHTML,
+        });
+    };
+
+</script>
+
+</html>

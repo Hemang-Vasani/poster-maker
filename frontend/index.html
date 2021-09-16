@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/jquery.touchy.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Jost:wght@500&family=Lobster&family=Merriweather&display=swap"
+    rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148195555-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148195555-2');
+  </script>
+
+</head>
+
+<body class="container" onload="loadBody()">
+  <!--<div id="preloader-active">-->
+  <!--    <div class="preloader d-flex align-items-center justify-content-center">-->
+  <!--        <div class="preloader-inner position-relative text_an">-->
+  <!--            <div class="preloader-circle"></div>-->
+  <!--            <div class="preloader-img pere-text ">-->
+  <!---<img src="splshimage/splash.png" alt="">-->
+  <!--            </div>-->
+  <!--            <span class="txt-rotate"data-period="2000"data-rotate='[ "WOCKHARDT", "WOCKHARDT", "WOCKHARDT"]'></span>-->
+  <!--        </div>-->
+  <!--    </div>-->
+  <!--</div>-->
+
+
+  <a href="" id="generateImg" download="MyFrame.png" style="display: none;"></a>
+  <section id="userFormDiv" class="formControl">
+    <form id="userForm" onsubmit="submitForm(event)">
+      <div class="container">
+        <img src="image/wockhard-logo.png" width="100%" style="margin: 0px 0 -7px 0;">
+
+        <h2 style="    color: #c8a554;
+    text-align: center;">Register</h2>
+        <p style="color: #fff; white-space: nowrap;">Please fill in this form to create an account.</p>
+        <hr>
+
+        <!-- <label class="form_lbl" for="empcode"><b>Employee ID :</b></label>
+        <input type="text" pattern="[0-9.]+" title="Invalid Employee Code" placeholder="Enter your Employee Code"
+          name="emp_codes" id="emp_code">
+     
+        <br />
+
+        <label class="form_lbl" for="email"><b>Name of Manager</b></label>
+        <input type="text" placeholder="Enter your name" name="name" id="name">
+
+        <label class="form_lbl" for="phone"><b>Moblie Number</b></label>
+        <input type="text" pattern="^\d{10}$" title="Enter 10 digit Number" placeholder="Enter your moblie number"
+          name="phone" id="phone">
+
+        <label class="form_lbl" for="hq"><b>HQ</b></label>
+        <input type="text" placeholder="Enter your HQ" name="hq" id="hq">
+
+        <label class="form_lbl" for="zone"><b>Zone</b></label>
+        <input type="text" placeholder="Enter your Zone" name="zone" id="zone"> -->
+        <select name="division" id="division"  onchange="getzsm()" required>
+          <option value="" selected > Select Division</option>
+          <option value="Diabetes">Diabetes</option>
+          <option value="Metabolic">Metabolic</option>
+        </select>
+         <select name="zsm" id="zsm"  onchange="getrm()" required>
+            <option value selected> Select ZSM</option>
+        </select>
+        <select name="rm" id="rm"  onchange="gettm()" required>
+          <option value selected> Select RM</option>
+        </select>
+        <select name="tm" id="tm"  onchange="gethq()" required>
+          <option value selected> Select TM</option>
+        </select>
+        <select name="hq" id="hq">
+          <option value selected> Select HQ</option>
+        </select>
+        <button type="submit" class="registerbtn">Submit</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="userSelection" class="formControl">
+    <form id="userSelectionForm" onsubmit="brandForm(event)">
+      <div class="container" id="contacts">
+        <img src="image/wockhard-logo.png" width="100%" style="margin: 0px 0 -7px 0;">
+        <h2 style="    color: #c8a554;
+    text-align: center;">Select Logo</h2>
+        <!-- <p style="color: #fff; white-space: nowrap;">Please Select Logo</p> -->
+        <hr>
+        <div class="blogomain">
+          <div class="blogo">
+            <label for="brand11">
+              <img src="image/img1.png">
+              <input type="checkbox" onclick="numbox('num1','brand11')" name="brand[]" id="brand11" value="1">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num1"></span>
+            </label>
+          </div>
+          <div class="blogo">
+            <label for="brand22">
+              <img src="image/img2.png">
+              <input type="checkbox" onclick="numbox('num2','brand22')" name="brand[]" id="brand22" value="2">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num2"></span>
+            </label>
+          </div>
+
+          <div class="blogo">
+            <label for="brand33">
+              <img src="image/img3.png">
+              <input type="checkbox" onclick="numbox('num3','brand33')" name="brand[]" id="brand33" value="3">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num3"></span>
+            </label>
+          </div>
+          <div class="blogo">
+            <label for="brand44">
+              <img src="image/img4.png">
+              <input type="checkbox" onclick="numbox('num4','brand44')" name="brand[]" id="brand44" value="4">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num4"></span>
+            </label>
+          </div>
+          <div class="blogo">
+            <label for="brand55">
+              <div class="bimg-1"> <img src="image/img5.png"></div>
+              <input type="checkbox" onclick="numbox('num5','brand55')" name="brand[]" id="brand55" value="5">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num5"></span>
+            </label>
+          </div>
+          <div class="blogo">
+            <label for="brand66">
+              <img src="image/img6.png">
+              <input type="checkbox" onclick="numbox('num6','brand66')" name="brand[]" id="brand66" value="6">
+              <!-- <span class="ckbox"></span> -->
+              <span class="numbox" id="num6"></span>
+            </label>
+          </div>
+
+          <button type="submit" class="registerbtn">Next</button>
+        </div>
+    </form>
+  </section>
+
+  <section id="imageFormDiv" class="formControl">
+    <form id="imageForm" onsubmit="imageFormSubmit(event)">
+      <div class="container">
+        <img src="image/wockhard-logo.png" width="100%" style="margin: 0px 0 -7px 0;">
+        <h1 style="    color: #c8a554;
+    text-align: center;">Register</h1>
+        <p style="color: #fff; white-space: nowrap;">Please fill in this form to create an account.</p>
+        <hr>
+
+        <label for="drName" class="form_lbl"><b>Name of Doctor *</b></label>
+        <input type="text" placeholder="Enter a doctor name" id="drName" name="drName" onkeyup="checkLengthdrName()"
+          required>
+        <div id="dr_name_vali"></div>
+        <!--<label for="address"><b>Address *</b></label>-->
+        <input type="hidden" placeholder="Enter a Address name" id="address" name="address">
+        <!--onkeyup="checkLengthadd()" -->
+        <div id="dr_address_vali"></div>
+        <label for="address" class="form_lbl"><b>Doctor's Photo *</b></label>
+        <input type="file" id="myfile" name="myfile">
+        <div id="dr_image_vali"></div>
+        <br><br>
+        <button type="submit" class="registerbtn" id="registerbtn">CHOOSE FRAME</button>
+      </div>
+
+    </form>
+  </section>
+
+  <section id="frameListPage" class="row">
+  </section>
+
+  <section id="downloadFramePage">
+    <section id="frameDiv" class="row" style="margin-left: inherit;">
+      <div id="draggableDiv" class="col-12 image-container">
+        <img class="image frameImg" id="frameImg" src="" />
+        <button class="btn download-btn" ontouchstart="mergeImgs()" onclick="mergeImgs()">Download</button>
+        <img class="image uploadImg" id="uploadImg" src="" />
+      </div>
+
+      <div id="draggableimage1" class="col-12">
+      </div>
+    </section>
+
+
+
+    <div id="draggableText">
+      <p id="imgTxt"></p>
+    </div>
+    <div id="draggableadd">
+      <p id="addTxt"></p>
+    </div>
+
+
+    <div id="sliderDiv">
+      <input id="mySlider" type="range" min="1" max="5" value="1.62" step="0.01" onchange="resizeImage();">
+    </div>
+    <div class="image-container" id="mergedImage">
+      <canvas id="canvas" width="1080" height="1920"></canvas>
+    </div>
+  </section>
+
+  <script>
+
+
+
+    //         var TxtRotate = function(el, toRotate, period) {
+    //       this.toRotate = toRotate;
+    //       this.el = el;
+    //       this.loopNum = 0;
+    //       this.period = parseInt(period, 10) || 2000;
+    //       this.txt = '';
+    //       this.tick();
+    //       this.isDeleting = false;
+    //     };
+
+    //     TxtRotate.prototype.tick = function() {
+    //       var i = this.loopNum % this.toRotate.length;
+    //       var fullTxt = this.toRotate[i];
+
+    //       if (this.isDeleting) {
+    //         this.txt = fullTxt.substring(0, this.txt.length - 1);
+    //       } else {
+    //         this.txt = fullTxt.substring(0, this.txt.length + 1);
+    //       }
+
+    //       this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+    //       var that = this;
+    //       var delta = 300 - Math.random() * 100;
+
+    //       if (this.isDeleting) { delta /= 2; }
+
+    //       if (!this.isDeleting && this.txt === fullTxt) {
+    //         delta = this.period;
+    //         this.isDeleting = true;
+    //       } else if (this.isDeleting && this.txt === '') {
+    //         this.isDeleting = false;
+    //         this.loopNum++;
+    //         delta = 500;
+    //       }
+
+    //       setTimeout(function() {
+    //         that.tick();
+    //       }, delta);
+    //     };
+
+
+    //       $(window).on('load', function () {
+    //         var elements = document.getElementsByClassName('txt-rotate');
+    //       for (var i=0; i<elements.length; i++) {
+    //         var toRotate = elements[i].getAttribute('data-rotate');
+    //         var period = elements[i].getAttribute('data-period');
+    //         if (toRotate) {
+    //           new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    //         }
+    //       }
+    //       // INJECT CSS
+    //       var css = document.createElement("style");
+    //       css.type = "text/css";
+    //       css.innerHTML = ".txt-rotate > .wrap { border-right: 0px solid #fff }";
+    //       document.body.appendChild(css);
+
+    //     $('#preloader-active').delay(5000).fadeOut('slow');
+    //     $('body').delay(5000).css({
+    //       'overflow': 'visible'
+    //     });
+    //   });
+    document.write(`<link rel="stylesheet" href="css/style.css?v=${Date.now()}">`);
+    document.write(`<link rel="stylesheet" href="css/form.css?v=${Date.now()}">`);
+    document.write(`<script type='text/javascript' src='js/script.js?v=${Date.now()}'><\/script>`);
+    document.write(`<script type='text/javascript' src='js/frameHandler.js?v=${Date.now()}'><\/script>`);
+    document.write(`<script type='text/javascript' src='js/routing.js?v=${Date.now()}'><\/script>`);
+
+
+  </script>
+</body>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Tables </title>
+    <link href="/dist/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <div>
+        <%- include('../views/header'); %>
+    </div>
+    <div id="layoutSidenav">
+        <%- include('../views/sidebar'); %>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Frame</h1>
+                        <!-- <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol> -->
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+                                            id="collapsible">
+                                            ADD NEW FRAME
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form action="/addframe/" method="POST" id="bannerform"
+                                            enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="fonttype">font type</label>
+                                                            <input type="text" name="fonttype" class="form-control"
+                                                                value="" id="fonttype" placeholder="fonttype">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="fontsize">fontsize</label>
+                                                            <input type="text" name="fontsize" class="form-control"
+                                                                value="" id="fontsize" placeholder="fontsize">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="fontcolor">fontcolor</label>
+                                                            <input type="text" name="fontcolor" class="form-control"
+                                                                value="" id="fontcolor" placeholder="fontcolor">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="othercss">othercss</label>
+                                                            <input type="text" name="othercss" class="form-control"
+                                                                value="" id="othercss" placeholder="othercss">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="addfonttype">addfonttype</label>
+                                                            <input type="text" name="addfonttype" class="form-control"
+                                                                value="" id="addfonttype" placeholder="addfonttype">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="addfontsize">addfontsize</label>
+                                                            <input type="text" name="addfontsize" class="form-control"
+                                                                value="" id="addfontsize" placeholder="addfontsize">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="addfontcolor">addfontcolor</label>
+                                                            <input type="text" name="addfontcolor" class="form-control"
+                                                                value="" id="addfontcolor" placeholder="addfontcolor">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="addothercss">addothercss</label>
+                                                            <input type="text" name="addothercss" class="form-control"
+                                                                value="" id="addothercss" placeholder="addothercss">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4"
+                                                    style="text-align: center; margin-top: 17px; margin-left: -150px;">
+                                                    <input type="file" id="files" name="ev_image" class="hidden"
+                                                        onchange="loadFile(event)" style="opacity: 0;">
+                                                    <label for="files">
+                                                        <img id="ev_image" class="img-circle"
+                                                            src="http://52.66.231.200/femalehomeworkout/asset/images/users/user.png"
+                                                            alt=""
+                                                            style="width: 130px; height: 130px; BORDER-RADIUS: 355PX;">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="updateId" id="updateId" value="" hidden>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Frames
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <li class="nav-item">
+                                        <button id="excelbtn" class="btn btn-primary my-2">Excel</button>
+                                    </li>
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">
+                                                    <i class="fa fa-trash" type="buttton" id="deleteAcc"
+                                                        style="color: red;"></i>
+                                                    <span><input id="select_all" type="checkbox" value="-1"></span>
+                                                </th>
+                                                <th>Image</th>
+                                                <th>FONT TYPE</th>
+                                                <th>FONT SIZE</th>
+                                                <th>FONT COLOR</th>
+                                                <th>OTHER CSS</th>
+                                                <th>ADD FONT TYPE</th>
+                                                <th>ADD FONT SIZE</th>
+                                                <th>ADD FONT COLOR</th>
+                                                <th>ADD OTHER CSS</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% if(frames !==false) {%>
+                                                <% frames.forEach(function(frame) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" class="excludeThisClass" value="<%= frame._id %>">
+                                                        </td>
+                                                        </td>
+                                                        <td>
+                                                            <img src="/frame/<%= frame.ev_image %>" alt="image" style="width:100px; height:100px;">
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.fonttype %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.fontsize %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.fontcolor %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.othercss %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.addfonttype %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.addfontsize %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.addfontcolor %>
+                                                        </td>
+                                                        <td>
+                                                            <%= frame.addothercss %>
+                                                        </td>
+                                                        <td class="excludeThisClass">
+                                                            <!-- <i class="fa fa-unlock-alt" type="buttton"
+                                                                style="color: green;"></i>
+                                                            <i class="fa fa-lock" type="buttton"
+                                                                style="color: red;"></i> -->
+                                                            <a href="/frame/preupdate/<%= frame._id %>"><i
+                                                                    class="fa fa-wrench" aria-hidden="true"></i></a>
+                                                            <!-- <i class="fa fa-trash" type="buttton" id="deleteAccOne"
+                                                                style="color: red;"></i> -->
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                                        <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <%- include('../views/footer'); %>
+            </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/dist/js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="/dist/assets/demo/datatables-demo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $("#select_all").on("change", function () {
+                var status = this.checked;
+                $("input:checkbox").each(function () {
+                    this.checked = status;
+                });
+            });
+
+            $("input:checkbox").on("change", function () {
+                if (this.checked == false) {
+                    $("#select_all")[0].checked = false;
+                }
+                if ($('input:checkbox:checked').length == $('input:checkbox').length - 1) {
+                    $("#select_all")[0].checked = true;
+                }
+            });
+
+            $("#deleteAccOne").on("click", () => {
+                console.log("in click event");
+                var items = [];
+                console.log("value: " + this.value);
+                if (this.value) {
+                    items.push(this.value);
+                    console.log("print items: " + items);
+                    delData(items);
+                }
+            })
+
+            $("#deleteAcc").on("click", function () {
+                var items = [];
+                if ($("input:checkbox:checked").length > 0) {
+                    $("input:checkbox:checked").each(function () {
+                        items.push(this.value);
+                        console.log("print items: " + items);
+                    });
+                    items = items.filter(function (element) {
+                        return element != -1
+                    });
+                }
+                console.log("print items: " + items);
+                var del_confirm = confirm("Are you sure??");
+                if (del_confirm) {
+                    delData(items);
+                }
+            });
+
+            function delData(ids) {
+                $.ajax({
+                    type: "POST",
+                    url: "/frame/delete",
+                    data: { ids: ids },
+                    success: function (data) {
+                        location.reload();
+                    }
+                })
+            }
+
+            var heightCM = ["<120", "121 to 150", "151 to 162", "163 to 175", ">176"];
+            var heightFT = ["<4", "4 to 5", "5 to 5.5", "5.5 to 5.10", ">5.10"];
+            $("#heightP").change(function () {
+                console.log("in height change");
+                var hp = this.value;
+                if (hp.length == 0) document.getElementById("height").innerHTML = "<option></option>";
+                else if (hp === "cm") {
+                    document.getElementById("cmft").innerHTML = "CM";
+                    var heightOpt = "<option>select</option>";
+                    console.log("in height P : " + hp);
+                    heightCM.forEach(value => {
+                        console.log(value);
+                        heightOpt += "<option>" + value + "</option>";
+                    })
+                    document.getElementById("height").innerHTML = heightOpt;
+                } else if (hp === "ft") {
+                    document.getElementById("cmft").innerHTML = "FT";
+                    var heightOpt = "<option>select</option>";
+                    console.log("in height P : " + hp);
+                    heightFT.forEach(value => {
+                        console.log(value);
+                        heightOpt += "<option>" + value + "</option>";
+                    })
+                    document.getElementById("height").innerHTML = heightOpt;
+                }
+            });
+            if ("<%= updateframe.test %>" == "test") {
+                $("#fonttype").val("<%= updateframe.fonttype %>");
+                $("#fontsize").val("<%= updateframe.fontsize %>");
+                $("#fontcolor").val("<%= updateframe.fontcolor %>");
+                $("#othercss").val("<%- updateframe.othercss %>");
+                $("#addfonttype").val("<%= updateframe.addfonttype %>");
+                $("#addfontsize").val("<%= updateframe.addfontsize %>");
+                $("#addfontcolor").val("<%= updateframe.addfontcolor %>");
+                $("#addothercss").val("<%= updateframe.addothercss %>");
+                // $("#ev_image").val("<%= updateframe.ev_image %>");
+                $("#ev_image").attr("src", '/frame/<%= updateframe.ev_image %>');
+                $("#updateId").val("<%= updateframe._id %>");
+            }
+        })
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('ev_image');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+        $("#excelbtn").click(function (e) {
+                $("#dataTable").table2excel({
+                    exclude: ".excludeThisClass",
+                    name: "Worksheet Name",
+                    filename: "SomeFile.xls", // do include extension
+                    preserveColors: false, // set to true if you want background colors and font colors preserved
+                    exclude_img: true,
+                    exclude_links: true,
+                    exclude_inputs: true,
+                });
+            });
+    </script>
+</body>
+
+</html>

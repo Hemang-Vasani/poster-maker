@@ -1,0 +1,53 @@
+{
+    "error": true,
+    "message": "Fram List.",
+    "data": [
+        {
+            "image": "http:\/\/65.0.77.129\/eid_wockhardt\/image\/fr1.png",
+            "font-type": "Cinzel",
+            "font-size": "15px",
+            "font-color": "#fff",
+            "other-css": "7,35",
+            "logo-top":"", 
+            "l-top":"",
+            "logo-align": "flex-end",
+            "logo-height": "",
+            "add-font-type": "",
+            "add-font-size": "",
+            "add-font-color": "",
+            "add-other-css": ""
+        },
+        {
+            "image": "http:\/\/65.0.77.129\/eid_wockhardt\/image\/fr2.png",
+            "font-type": "Poppins",
+            "font-size": "15px",
+            "font-color": "#fff",
+            "other-css": "7,81",
+            "logo-top":"",
+            "l-top":"",
+            "logo-align": "center",
+            "logo-height": "",
+            "add-font-type": "",
+            "add-font-size": "",
+            "add-font-color": "",
+            "add-other-css": ""
+        },
+        {
+            "image": "http:\/\/65.0.77.129\/eid_wockhardt\/image\/fr3.png",
+            "font-type": "Cinzel",
+            "font-size": "15px",
+            "font-color": "#fff",
+            "other-css": "7,34",
+            "logo-top":"",
+            "logo-align": "center",
+            "logo-height": "",
+            "l-top":"",
+            "add-font-type": "",
+            "add-font-size": "",
+            "add-font-color": "",
+            "add-other-css": ""
+        }
+    ]
+}
+
+
